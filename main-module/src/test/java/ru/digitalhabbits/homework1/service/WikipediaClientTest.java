@@ -18,7 +18,7 @@ class WikipediaClientTest {
     @MethodSource("generateSearchData")
     void search(Pair<String, String> searchData) {
         final String searchResult = client.search(searchData.getKey());
-        assertFalse(searchResult.isBlank());
+        assertFalse(searchResult.isEmpty());
         assertTrue(searchResult.contains(searchData.getValue()));
     }
 
