@@ -6,7 +6,6 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.Format;
 
 import static java.util.Arrays.stream;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -37,7 +36,7 @@ public class FileEngine {
             fileNum++;
 
         } catch (IOException e) {
-            logger.error("Не удалось записать в файл-результатов", e);
+            logger.error("Не удалось записать результат в файл", e);
             return  false;
         }
 
