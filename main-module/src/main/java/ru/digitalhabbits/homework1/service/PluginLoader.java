@@ -6,7 +6,6 @@ import ru.digitalhabbits.homework1.plugin.PluginInterface;
 import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -60,68 +59,6 @@ public class PluginLoader {
                 e.printStackTrace();
             }
         }
-
-
-            /*
-            ArrayList<String> classes = new ArrayList<>();
-            ArrayList<URL> urls = new ArrayList<>(files.length);
-            for(File file:files)
-            {
-                JarFile jar = null;
-                try {
-                    jar = new JarFile(file);
-                } catch (IOException e) {
-                    logger.error("Загрузка плагинов: ошибка ввода-вывода", e);
-                }
-                jar.stream().forEach(jarEntry -> {
-                    if(jarEntry.getName().endsWith(".class"))
-                    {
-                        classes.add(jarEntry.getName());
-                    }
-                });
-                URL url= null;
-                try {
-                    url = file.toURI().toURL();
-                } catch (MalformedURLException e) {
-                    logger.error("Загрузка плагинов: не корректный URL", e);
-                }
-                urls.add(url);
-            }
-
-            URLClassLoader urlClassLoader = new URLClassLoader(urls.toArray(new URL[urls.size()]));
-
-            for (URL url: urls) {
-                try {
-                    Class c = urlClassLoader.loadClass(url);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            classes.forEach(className->{
-                try
-                {
-                    Class cls = urlClassLoader.loadClass(className.replaceAll("/",".").replace(".class",""));
-                    Class[] interfaces = cls.getInterfaces();
-                    for(Class intface:interfaces)
-                    {
-                        if(intface.equals(PluginInterface.class))
-                        {
-                            Class<? extends PluginInterface> plugin = (Class<? extends PluginInterface>) cls.newInstance();
-                            plugins.add(plugin);
-                            break;
-                        }
-                    }
-                }
-                catch (Exception e){
-                    logger.error("Загрузка плагинов: ошибка ClassLoader'а", e);
-                }
-            });
-
-            */
-
-
-
 
         return plugins;
     }

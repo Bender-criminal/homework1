@@ -14,7 +14,6 @@ public class FileEngine {
     private static final String RESULT_FILE_PATTERN = "results-%s.txt";
     private static final String RESULT_DIR = "results";
     private static final String RESULT_EXT = ".txt";
-    private static int fileNum = 1;
 
     private static final Logger logger = getLogger(FileEngine.class);
 
@@ -31,9 +30,9 @@ public class FileEngine {
             }
         }
 
-        try (FileWriter fw = new FileWriter(String.format(currentDir + "/" + RESULT_DIR + "/" + RESULT_FILE_PATTERN, fileNum))){
-            fw.write(pluginName + ": " + text + "\n");
-            fileNum++;
+        try (FileWriter fw = new FileWriter(String.format(currentDir + "/" + RESULT_DIR + "/" + RESULT_FILE_PATTERN, pluginName))){
+            fw.write(text + "\n");
+            fw.flush();
 
         } catch (IOException e) {
             logger.error("Не удалось записать результат в файл", e);

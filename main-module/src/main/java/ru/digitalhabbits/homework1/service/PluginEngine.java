@@ -17,7 +17,7 @@ public class PluginEngine {
     public  <T extends PluginInterface> String applyPlugin(@Nonnull Class<T> cls, @Nonnull String text) {
             String result = null;
         try {
-            result = (String) cls.getMethod("apply", String.class).invoke(text);
+            result = (String) cls.getDeclaredMethod("apply", String.class).invoke(cls.newInstance(), text);
         } catch (Exception e) {
             logger.error("Плагин не выполнился", e);
         }
