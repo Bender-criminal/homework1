@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import static java.util.Arrays.stream;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -30,8 +31,16 @@ public class FileEngine {
             }
         }
 
-        try (FileWriter fw = new FileWriter(String.format(currentDir + "/" + RESULT_DIR + "/" + RESULT_FILE_PATTERN, pluginName))){
-            fw.write(text + "\n");
+        File file = new File(String.format(currentDir + "/" + RESULT_DIR + "/" + RESULT_FILE_PATTERN, pluginName));
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                logger.error("Не удалось создать файл результатов", e);
+            }
+        }
+        try (FileWriter fw = new FileWriter(file)){
+            fw.write(text);
             fw.flush();
 
         } catch (IOException e) {

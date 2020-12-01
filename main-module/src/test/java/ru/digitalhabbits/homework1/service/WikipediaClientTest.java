@@ -24,9 +24,9 @@ class WikipediaClientTest {
 
     static Stream<Pair<String, String>> generateSearchData() {
         return Stream.of(
-                of("Hypertext_Transfer_Protocol", "Hypertext Transfer Protocol"),
-                of("WebSocket", "WebSocket is a computer communications protocol"),
-                of("HTML", "Hypertext Markup Language")
+                of("Hypertext_Transfer_Protocol", "Hypertext Transfer Protocol".toLowerCase()),
+                of("WebSocket", "WebSocket is a computer communications protocol".toLowerCase()),
+                of("HTML", "Hypertext Markup Language".toLowerCase())
         );
     }
 }
