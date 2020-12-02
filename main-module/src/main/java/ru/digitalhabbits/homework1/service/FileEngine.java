@@ -22,13 +22,10 @@ public class FileEngine {
         final String currentDir = System.getProperty("user.dir");
         final File resultDir = new File(currentDir + "/" + RESULT_DIR);
 
-        if (!resultDir.exists()) {
-            try {
-                resultDir.createNewFile();
-            } catch (IOException e) {
-                logger.error("Не удалось создать директорию результатов", e);
-                return false;
-            }
+        try {
+            Files.createDirectories(resultDir.toPath());
+        } catch (IOException e) {
+            logger.error("Не удалось создать директорию результатов", e);
         }
 
         File file = new File(String.format(currentDir + "/" + RESULT_DIR + "/" + RESULT_FILE_PATTERN, pluginName));
